@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexCommerce App Presentation</title>
+    <style>
+        /* General Body Style */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ADD8E6; /* Light Blue */
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Slide Styling */
+        .slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 40px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+            text-align: center;
+        }
+
+        h1, h2 {
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            color: #555;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #777;
+            line-height: 1.6;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1.1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #006400; /* Dark Green */
+            outline: none;
+        }
+
+        button {
+            padding: 12px 24px;
+            background-color: #006400; /* Dark Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #004d00; /* Darker Green */
+        }
+
+        .image-preview {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .thank-you {
+            background-color:  #ADD8E6; /* Dark Green */
+            color: white;
+        }
+
+        /* Navigation link to shop registration */
+        .register-link {
+            font-size: 1.2em;
+            margin-top: 20px;
+            color: white; /* Dark Green */
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* Logo Animation */
+        .logo-slide {
+            animation: fadeIn 4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Logo Opener Slide -->
+    <div class="slide logo-slide">
+        <img src="images/nexcommerce-logo.png" alt="NexCommerce Logo" style="width: 300px; height: auto;">
+        <h1>NEXCOMMERCE</h1>
+    </div>
+
+    <!-- NexCommerce Presentation Slides -->
+    <div class="slide cover">
+        <h1>NEXCOMMERCE</h1>
+        <h2>Your Gateway to Everything</h2>
+    </div>
+
+    <!-- Introduction Slide -->
+    <div class="slide">
+        <h2>Introduction to NexCommerce</h2>
+        <p>NexCommerce is designed to enhance your shopping experience with convenience and variety.</p>
+        <img src="images/intro.jpg" alt="Introduction">
+    </div>
+
+    <!-- Market Analysis Slide with Chart -->
+    <div class="slide">
+        <h2>Market Analysis</h2>
+        <p>In 2023, e-commerce sales reached $5 trillion globally...</p>
+        <img src="images/market-analysis.jpg" alt="Market Analysis">
+        <canvas id="marketChart" width="400" height="200"></canvas>
+    </div>
+
+    <!-- Target Audience Slide -->
+    <div class="slide">
+        <h2>Target Audience</h2>
+        <ul>
+            <li>Online Shoppers</li>
+            <li>Families seeking convenience</li>
+            <li>Business Professionals</li>
+        </ul>
+    </div>
+
+    <!-- Shop Registration Link -->
+    <div class="slide">
+        <h2>Register Your Shop</h2>
+        <p>Want to create a shop? <a class="register-link" href="#shopRegistrationPage">Click here to register your shop.</a></p>
+    </div>
+
+    <!-- About Us Slide -->
+    <div class="slide">
+        <h2>About Us</h2>
+        <p>Learn more about our mission to be Earth's most customer-centric company.</p>
+        <img src="images/about.jpg" alt="About Us">
+    </div>
+
+    <!-- Shop Registration Form (Hidden by Default) -->
+    <div class="container" id="shopRegistrationPage" style="display:none;">
+        <h1>Register Your Shop</h1>
+
+        <form id="shopForm">
+            <!-- Shop Name -->
+            <label for="shopName">Shop Name:</label>
+            <input type="text" id="shopName" name="shopName" required placeholder="Enter your shop name">
+
+            <!-- Product Name -->
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" required placeholder="Enter the product name">
+
+            <!-- Product Price -->
+            <label for="productPrice">Product Price (in USD):</label>
+            <input type="number" id="productPrice" name="productPrice" required placeholder="Enter the product price">
+
+            <!-- Product Description (optional) -->
+            <label for="productDescription">Product Description:</label>
+            <textarea id="productDescription" name="productDescription" rows="4" placeholder="Enter a description for the product"></textarea>
+
+            <!-- Product Image Upload -->
+            <label for="productImage">Upload Product Image:</label>
+            <input type="file" id="productImage" name="productImage" accept="image/*" required>
+
+            <!-- Image Preview -->
+            <div class="image-preview" id="imagePreview">
+                <!-- The image preview will be shown here -->
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Register Product</button>
+        </form>
+    </div>
+
+    <!-- Shop Search Slide -->
+    <div class="slide">
+        <h2>Shop Search</h2>
+        <p>Find everything you need with our efficient search tool.</p>
+        <img src="images/search.jpg" alt="Search">
+        <input type="text" placeholder="Search for shops...">
+        <button>Search</button>
+    </div>
+
+    <!-- Login Slide -->
+    <div class="slide">
+        <h2>Login to Your Account</h2>
+        <form>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- Create Account Slide -->
+    <div class="slide">
+        <h2>Create an Account</h2>
+        <form>
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <!-- Account Dashboard Slide -->
+    <div class="slide">
+        <h2>Your Account Dashboard</h2>
+        <p>Welcome back! Here’s your personalized dashboard.</p>
+        <img src="images/dashboard.jpg" alt="Dashboard">
+    </div>
+
+    <!-- Privacy Policy Slide -->
+    <div class="slide">
+        <h2>Your Privacy Matters</h2>
+        <p>Your data is secure with us. Read about our policies.</p>
+        ```html
+        <img src="images/Privacy.jpg" alt="Privacy">
+    </div>
+
+    <!-- Real-time Inventory Slide -->
+    <div class="slide">
+        <h2>Real-time Inventory Tracking</h2>
+        <p>Manage your orders with our real-time inventory system.</p>
+        <img src="https://www.canva.com/design/DAGUSG9S4Gs/AKs8zrtVN2j2e5UvXbnyEw/view?utm_content=DAGUSG9S4Gs&utm_campaign=designshare&utm_medium=link&utm_source=editor" alt="Inventory Updates">
+    </div>
+
+    <!-- Location Tracking Slide -->
+    <div class="slide">
+        <h2>Location Tracking</h2>
+        <p>We can track where our order has reached.</p>
+        <img src="https://www.canva.com/design/DAGUSJ_5zng/-OqZCTu5CYv7m2kpQLynvg/view?utm_content=DAGUSJ_5zng&utm_campaign=designshare&utm_medium=link&utm_source=editor" alt="Location Tracking">
+    </div>
+
+    <!-- Thank You Slide -->
+    <div class="slide thank-you">
+        <h2>Thank You for Joining Us!</h2>
+        <p>Questions? We're here to help.</p>
+    </div>
+
+    <!-- Chart.js Script for Market Analysis -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('marketChart').getContext('2d');
+        const marketChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: 'E-commerce Sales (in Trillions)',
+                    data: [4.2, 4.8, 5.0, 5.5],
+                    backgroundColor: 'rgba(0, 100, 0, 0.3)', /* Dark Green */
+                    borderColor: 'rgba(0, 100, 0, 1)', /* Dark Green */
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Product Image Preview
+        const productImageInput = document.getElementById('productImage');
+        const imagePreview = document.getElementById('imagePreview');
+
+        productImageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = event.target.result;
+                    imagePreview.innerHTML = '';  // Clear previous preview
+                    imagePreview.appendChild(imgElement);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Handle form submission (just for frontend validation in this case)
+        document.getElementById('shopForm').addEventListener('submit', function(e) {
+            e.preventDefault();  // Prevent form from submitting for demonstration
+
+            const shopName = document.getElementById('shopName').value;
+            const productName = document.getElementById('productName').value;
+            const productPrice = document.getElementById('productPrice').value;
+            const productDescription = document.getElementById('productDescription').value;
+
+            alert(`Shop Name: ${shopName}\nProduct Name: ${productName}\nProduct Price: $${productPrice}\n Product Description: ${productDescription}`);
+
+            // In a real scenario, you would send this data to a server
+        });
+
+        // Show the shop registration page when the link is clicked
+        document.querySelector('.register-link').addEventListener('click', function() {
+            document.getElementById('shopRegistrationPage').style.display = 'block';
+            window.scrollTo(0, document.body.scrollHeight);  // Scroll to the registration section
+        });
+    </script>
+
+</body>
+</html>
